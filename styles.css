@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap");
+
+:root {
+  --color-background: #0D0628;
+  --one-color-text: #FCF7F8;
+  --two-color-text: rgb(193, 170, 170);
+  --footer-background-color: rgb(21, 10, 43);
+  --one-gradient-header: #050214;
+  --two-gradient-footer: rgb(40, 35, 57);
+  --card-background-color: rgb(38, 27, 53);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Host Grotesk";
+    color: var(--one-color-text);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 40px 20px;
+    text-align: center;
+    z-index: 10;
+}
+
+header h1 {
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 50px;
+}
+
+footer {
+    position: absolute;
+    width: 100vw;
+    padding: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    bottom: 0;
+    z-index: 10;
+}
+
+footer a {
+    color: var(--two-color-text);
+    text-decoration: none;
+}
+
+.hero {
+    position: fixed;
+    width: 100vw;
+    height: 100svh;
+    overflow: hidden;
+}
+
+.gradient-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.cards-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 250px;
+    height: 200px;
+    align-items: center;
+    z-index: 10;
+}
+
+.retangle {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    background-color: var(--one-color-text);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #000000;
+    font-size: 1.8rem;
+    font-weight: bold;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.item-1 {
+  top: 65%;
+  left: 20%;
+  transform: translate(-50%, -50%) rotate(50deg);
+}
+
+.item-1:hover {
+  transform: translate(-50%, -50%) rotate(50deg) scale(1.1);
+}
+
+.item-2 {
+  top: 65%;
+  left: 80%;
+  transform: translate(-50%, -50%) rotate(-50deg);
+}
+
+.item-2:hover {
+  transform: translate(-50%, -50%) rotate(-50deg) scale(1.1);
+}
+
+.item-3 {
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item-3:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.logo-center {
+    position: absolute;
+    top: 48%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90px; 
+    height: auto;
+    z-index: 10;
+}

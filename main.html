@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page Gsap.js</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/+esm"
+        }
+      }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Gsap.js mechanics</h1>
+    </header>
+    <section class="hero">
+        <div class="gradient-canvas"></div>
+    </section>
+    <div class="cards-container">
+        <img src="/assets/composition_vector.svg" alt="arrow-logo" class="logo-center">
+        <a href="./mechanics/intro-animation/index.html" class="retangle item-1">1</a>
+        <a href="./mechanics/hero-animation/index.html" class="retangle item-2">2</a>
+        <a href="#mecanic3" class="retangle item-3">3</a>
+    </div>
+    <footer>
+        <section id="github-person">
+            <a href="https://github.com/Guixrz" target="_blank">Calvet</a>
+        </section>
+    </footer>
+    <script type="module" src="shaders.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
