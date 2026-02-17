@@ -22,12 +22,6 @@
   <img src="./assets/github-video-gsap.gif" alt="GSAP Animation Preview" width="600">
 </p>
 
-<p align="center">
-  <a href="https://Guixrz.github.io/gsap-studies/">
-    <img src="https://img.shields.io/badge/all mechanics-Click here-88ce02?style=for-the-badge&logo=greensock&logoColor=blue" alt="All Mechanics">
-  </a>
-</p>
-
 <h2 id="technologies">💻 Technologies</h2>
 
 - **GSAP 3** (GreenSock Animation Platform)
