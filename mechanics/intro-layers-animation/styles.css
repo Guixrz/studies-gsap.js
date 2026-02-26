@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "PP Neue Montreal", sans-serif;
+    background-color: #e3e3db;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+p {
+    text-transform: uppercase;
+    font-family: "Akkurat Mono" , monospace;
+    font-size: 0.7rem;
+}
+
+a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: "Akkurat Mono" , monospace;
+    font-size: 0.7rem;
+    color: #000;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100svh;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    gap: 2em;
+    overflow: hidden;
+}
+
+.projects, .loader, .locations {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+}
+
+.loader {
+    align-items: center;
+    gap: 0;
+}
+
+.loader h1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Druk" , sans-serif;
+    font-size: 2.5rem;
+    font-style: italic;
+    line-height: 0.9;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-image: linear-gradient(0deg, #3a3a3a , #3a3a3a 50% , #fff 0);
+    background-size: 100% 200%;
+    background-position: 0% 100%;
+    color: #3a3a3a;
+}
