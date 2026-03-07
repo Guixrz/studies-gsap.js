@@ -22,15 +22,33 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const allImageSources = Array.from(
-        { length: 12 },
+        { length: 21 },
         (_, i) => {
-        const frameNumber = (i + 1).toString().padStart(2, '0');
-        return `./assets-intro-layers/img-${frameNumber}.webp`;
+            const frameNumber = (i + 1).toString().padStart(2, "0");
+            return `./assets-intro-layers/img-${frameNumber}.webp`;
         }
     );
 
+    const preLoadedImages = [];
+
+    function preLoadAllImages() {
+        return Promise.all(
+            allImageSources.map((src) => {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        preLoadedImages.push(img)
+                        resolve();
+                    };
+                    img.onerror = () => resolve();
+                    img.src = src;
+                });
+            })
+        );
+    }
+
     const getRandomImageSet = () => {
-        const shuffled = [...allImageSources].sort(() => 0.5 - Math.random());
+        const shuffled = [...preLoadedImages].sort(() => Math.random() - 0.5);
         return shuffled.slice(0,9);
     };
 
@@ -65,27 +83,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function startImageRotation() {
         const totalCycles = 18;
+        let cycle = 0;
 
-        for(let cycle = 0; cycle < totalCycles; cycle++) {
-            const randomImages = getRandomImageSet();
+        const allCycles = Array.from({length:totalCycles},() => getRandomImageSet());
 
-            gsap.to({}, {
-                duration: 0,
-                delay: cycle * 0.15,
-                onComplete: () => {
-                    gridImages.forEach((img,index) => {
-                        const imgElement = img.querySelector("img");
+        const interval = setInterval(() => {
+            const randomImages = allCycles[cycle];
 
-                        if(cycle === totalCycles - 1 && img===heroImage) {
-                            imgElement.src = "./assets-intro-layers/img-04.webp";
-                            gsap.set(imgElement, { scale: 2});
-                        } else {
-                            imgElement.src = randomImages[index];
-                        }
-                    });
-                },
+            gridImages.forEach((img,index) => {
+                const imgElement = img.querySelector("img");
+
+                if(cycle === totalCycles - 1 && img===heroImage) {
+                    imgElement.src = "./assets-intro-layers/img-04.webp";
+                    gsap.set(imgElement,{scale:2});
+                } else {
+                    imgElement.src = randomImages[index].src;
+                }
             });
-        }
+            cycle++;
+            if(cycle >= totalCycles) clearInterval(interval);
+        },150);
     }
     
     function setupInitialState() {
@@ -102,9 +119,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function init() {
+    async function init() {
         initializeDynamicContent();
         setupInitialState();
+        await preLoadAllImages();
         createAnimationTimeLines();
     }
 
@@ -167,6 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
             delay: 1.5,
         });
 
+        let hasStartedRotation = false;
+
         imagesTimeline.to(".img", {
             clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
             duration: 1,
@@ -174,13 +194,16 @@ document.addEventListener("DOMContentLoaded", () => {
             stagger: 0.05,
             ease: "hop",
             onStart: () => {
-                setTimeout(()=> {
-                    startImageRotation();
-                    gsap.to(".loader",{
-                        opacity: 0,
-                        duration: 0.5,
-                    });
-                },500);
+                if(!hasStartedRotation) {
+                    hasStartedRotation = true;
+                    setTimeout(()=> {
+                        startImageRotation();
+                        gsap.to(".loader",{
+                            opacity: 0,
+                            duration: 0.5,
+                        });
+                    },500);
+                }
             },
         });
         imagesTimeline.to(images, {
